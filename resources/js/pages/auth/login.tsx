@@ -59,7 +59,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                         />
                         <InputError message={errors.email} />
                     </div>
-
+{/* // test */}
                     <div className="grid gap-1.5">
                         <div className="flex items-center">
                             <Label htmlFor="password" className="text-base font-medium text-gray-900">
