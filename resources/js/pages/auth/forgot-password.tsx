@@ -30,7 +30,9 @@ export default function ForgotPassword({ status }: { status?: string }) {
             <div className="space-y-6">
                 <form onSubmit={submit}>
                     <div className="grid gap-2">
-                        <Label htmlFor="email">Email address</Label>
+                        <Label htmlFor="email" className="text-base font-medium text-gray-900">
+                            Email address
+                        </Label>
                         <Input
                             id="email"
                             type="email"
@@ -40,22 +42,25 @@ export default function ForgotPassword({ status }: { status?: string }) {
                             autoFocus
                             onChange={(e) => setData('email', e.target.value)}
                             placeholder="email@example.com"
+                            className="border-gray-300 text-gray-900 focus:border-indigo-500"
                         />
 
                         <InputError message={errors.email} />
                     </div>
 
                     <div className="my-6 flex items-center justify-start">
-                        <Button className="w-full" disabled={processing}>
+                        <Button className="w-full bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700" disabled={processing}>
                             {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
-                            Email password reset link
+                            Reset password
                         </Button>
                     </div>
                 </form>
 
-                <div className="text-muted-foreground space-x-1 text-center text-sm">
+                <div className="text-muted-foreground te space-x-1 text-center text-sm">
                     <span>Or, return to</span>
-                    <TextLink href={route('login')}>log in</TextLink>
+                    <TextLink className="text-indigo-600" href={route('login')}>
+                        Log in
+                    </TextLink>
                 </div>
             </div>
         </AuthLayout>
