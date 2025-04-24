@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import AuthLayout from '@/layouts/auth-layout';
+import AuthSimpleLayout from '@/layouts/auth/auth-simple-layout';
 
 type LoginForm = {
     email: string;
@@ -36,10 +36,10 @@ export default function Login({ status, canResetPassword }: LoginProps) {
     };
 
     return (
-        <AuthLayout title="Welcome !" description="Untuk bisa berbelanja kamu bisa login terlebih dahulu.">
+        <AuthSimpleLayout title="Welcome Back !" description="Untuk bisa berbelanja kamu bisa login terlebih dahulu.">
             <Head title="Log in" />
 
-            <form className="flex flex-col gap-4" onSubmit={submit}>
+            <form className="relative z-10 flex flex-col gap-4 rounded-lg bg-white/80 p-6 backdrop-blur-sm" onSubmit={submit}>
                 <div className="grid gap-4">
                     <div className="grid gap-1.5">
                         <Label htmlFor="email" className="text-base font-medium text-gray-900">
@@ -55,11 +55,11 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                             value={data.email}
                             onChange={(e) => setData('email', e.target.value)}
                             placeholder="email@example.com"
-                            className="border-gray-300 text-gray-900 focus:border-indigo-500"
+                            className="relative z-10 border-gray-300 text-gray-900 focus:border-indigo-500"
                         />
                         <InputError message={errors.email} />
                     </div>
-{/* // test */}
+                    {/* // test */}
                     <div className="grid gap-1.5">
                         <div className="flex items-center">
                             <Label htmlFor="password" className="text-base font-medium text-gray-900">
@@ -80,7 +80,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                             value={data.password}
                             onChange={(e) => setData('password', e.target.value)}
                             placeholder="password"
-                            className="border-gray-300 text-gray-900 focus:border-indigo-500"
+                            className="relative z-10 border-gray-300 text-gray-900 focus:border-indigo-500"
                         />
                         <InputError message={errors.password} />
                     </div>
@@ -92,6 +92,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                             checked={data.remember}
                             onClick={() => setData('remember', !data.remember)}
                             tabIndex={3}
+                            className="relative z-10"
                         />
                         <Label htmlFor="remember" className="text-sm font-medium text-gray-900">
                             Remember me
@@ -100,7 +101,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
 
                     <Button
                         type="submit"
-                        className="mt-2 w-full bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700"
+                        className="relative z-10 mt-2 w-full bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700"
                         tabIndex={4}
                         disabled={processing}
                     >
@@ -117,7 +118,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                 </div>
             </form>
 
-            {status && <div className="mb-4 text-center text-sm font-medium text-green-600">{status}</div>}
-        </AuthLayout>
+            {status && <div className="relative z-10 mb-4 text-center text-sm font-medium text-green-600">{status}</div>}
+        </AuthSimpleLayout>
     );
 }

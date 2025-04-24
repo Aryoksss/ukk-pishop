@@ -7,7 +7,7 @@ import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import AuthLayout from '@/layouts/auth-layout';
+import AuthSimpleLayout from '@/layouts/auth/auth-simple-layout';
 
 type RegisterForm = {
     name: string;
@@ -32,9 +32,9 @@ export default function Register() {
     };
 
     return (
-        <AuthLayout title="Create account!" description="Buat akun untuk mendapatkan informasi dan notifikasi dari kami">
+        <AuthSimpleLayout title="Create account!" description="Buat akun untuk mendapatkan informasi dan notifikasi dari kami">
             <Head title="Register" />
-            <form className="flex flex-col gap-4" onSubmit={submit}>
+            <form className="relative z-10 flex flex-col gap-4 rounded-lg bg-white/80 p-6 backdrop-blur-sm" onSubmit={submit}>
                 <div className="grid gap-3">
                     <div className="grid gap-1">
                         <Label htmlFor="name" className="text-base font-medium text-gray-900">
@@ -50,7 +50,7 @@ export default function Register() {
                             value={data.name}
                             onChange={(e) => setData('name', e.target.value)}
                             disabled={processing}
-                            className="border-gray-300 text-gray-900 focus:border-indigo-500"
+                            className="relative z-10 border-gray-300 text-gray-900 focus:border-indigo-500"
                             placeholder="username"
                         />
                         <InputError message={errors.name} className="mt-1" />
@@ -70,7 +70,7 @@ export default function Register() {
                             onChange={(e) => setData('email', e.target.value)}
                             disabled={processing}
                             placeholder="email@example.com"
-                            className="border-gray-300 text-gray-900 focus:border-indigo-500"
+                            className="relative z-10 border-gray-300 text-gray-900 focus:border-indigo-500"
                         />
                         <InputError message={errors.email} />
                     </div>
@@ -89,7 +89,7 @@ export default function Register() {
                             onChange={(e) => setData('password', e.target.value)}
                             disabled={processing}
                             placeholder="password"
-                            className="border-gray-300 text-gray-900 focus:border-indigo-500"
+                            className="relative z-10 border-gray-300 text-gray-900 focus:border-indigo-500"
                         />
                         <InputError message={errors.password} />
                     </div>
@@ -108,14 +108,14 @@ export default function Register() {
                             onChange={(e) => setData('password_confirmation', e.target.value)}
                             disabled={processing}
                             placeholder="password"
-                            className="border-gray-300 text-gray-900 focus:border-indigo-500"
+                            className="relative z-10 border-gray-300 text-gray-900 focus:border-indigo-500"
                         />
                         <InputError message={errors.password_confirmation} />
                     </div>
 
                     <Button
                         type="submit"
-                        className="mt-1 w-full bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700"
+                        className="relative z-10 mt-1 w-full bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700"
                         tabIndex={5}
                         disabled={processing}
                     >
@@ -131,6 +131,6 @@ export default function Register() {
                     </TextLink>
                 </div>
             </form>
-        </AuthLayout>
+        </AuthSimpleLayout>
     );
 }
