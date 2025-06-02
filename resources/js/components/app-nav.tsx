@@ -1,8 +1,17 @@
-import { Link } from '@inertiajs/react';
-import { ShoppingCart } from 'lucide-react';
+import { SharedData } from '@/types';
+import { Button } from '@headlessui/react';
+import { Link, router, usePage } from '@inertiajs/react';
+import { CircleUser, ShoppingCart } from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { Input } from './ui/input';
 
 export function AppNavbar() {
+    const { props } = usePage<SharedData>();
+    const user = props.auth.user;
+
+    const handleLogout = () => {
+        router.post(route('logout'));
+    };
     return (
         <nav className="flex items-center justify-between border-b border-black md:h-14 md:px-32">
             <div className="flex items-center gap-7">
@@ -23,10 +32,36 @@ export function AppNavbar() {
                 <Input className="border-border-primary rounded-full" placeholder="Search" />
             </div>
             <div className="flex gap-4">
-                <Link href="#">
-                    <h2 className="border-r-2 border-black px-4 text-base underline">Sign In</h2>
-                </Link>
-                <ShoppingCart />
+                {user ? (
+                    <DropdownMenu>
+                        <DropdownMenuTrigger className="flex items-center gap-2 rounded-md bg-white p-2 shadow-md">
+                            <CircleUser />
+                            {user.name}
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            <DropdownMenuItem>
+                                <Link href="/profile">Profile</Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <Button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleLogout();
+                                    }}
+                                >
+                                    Logout
+                                </Button>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                ) : (
+                    <Link href="/login">
+                        <h2 className="rounded-md bg-white p-2 px-4 text-base shadow-md">Login</h2>
+                    </Link>
+                )}
+                <div className="flex items-center rounded-md bg-white p-2 shadow-md">
+                    <ShoppingCart />
+                </div>
             </div>
         </nav>
     );
