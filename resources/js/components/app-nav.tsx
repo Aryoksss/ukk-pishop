@@ -13,28 +13,26 @@ export function AppNavbar() {
         router.post(route('logout'));
     };
     return (
-        <nav className="flex items-center justify-between border-b border-black md:h-14 md:px-32">
-            <div className="flex items-center gap-7">
-                <div className="flex gap-8">
-                    <Link href="#">
-                        <h1 className="text-xl font-bold">Ecommerce</h1>
-                    </Link>
-                    <Link href="#">
-                        <h1 className="">Produk</h1>
-                    </Link>
-                    <Link href="#">
-                        <h1 className="">Kategori</h1>
-                    </Link>
-                    <Link href="#">
-                        <h1 className="">About</h1>
-                    </Link>
-                </div>
-                <Input className="border-border-primary rounded-full" placeholder="Search" />
+        <nav className="flex items-center justify-between border-b border-black px-24 md:h-14">
+            <div className="flex items-center gap-8">
+                <Link href="#">
+                    <h1 className="text-xl font-bold">Ecommerce</h1>
+                </Link>
+                <Link href="#">
+                    <h1 className="">Produk</h1>
+                </Link>
+                <Link href="#">
+                    <h1 className="">Kategori</h1>
+                </Link>
+                <Link href="#">
+                    <h1 className="">About</h1>
+                </Link>
+                <Input className="border-border-primary w-sm rounded-full placeholder:text-center 2xl:ms-64" placeholder="Search" />
             </div>
             <div className="flex gap-4">
                 {user ? (
                     <DropdownMenu>
-                        <DropdownMenuTrigger className="flex items-center gap-2 rounded-md bg-white p-2 shadow-md">
+                        <DropdownMenuTrigger className="flex items-center gap-2 p-2">
                             <CircleUser />
                             {user.name}
                         </DropdownMenuTrigger>
@@ -56,10 +54,10 @@ export function AppNavbar() {
                     </DropdownMenu>
                 ) : (
                     <Link href="/login">
-                        <h2 className="rounded-md bg-white p-2 px-4 text-base shadow-md">Login</h2>
+                        <h2 className="p-2 px-4 text-base">Sign in</h2>
                     </Link>
                 )}
-                <div className="flex items-center rounded-md bg-white p-2 shadow-md">
+                <div className="flex items-center p-2">
                     <ShoppingCart />
                 </div>
             </div>
