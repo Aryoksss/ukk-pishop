@@ -13,40 +13,7 @@ interface CartItem {
 
 export function Cart() {
     const [selectedItems, setSelectedItems] = useState<number[]>([]);
-    const [cartItems, setCartItems] = useState<CartItem[]>([
-        {
-            id: 1,
-            name: 'Monoseries',
-            price: 100000,
-            image: 'monoseries.jpg',
-            quantity: 1,
-            stock: 10,
-        },
-        {
-            id: 2,
-            name: 'Another Product',
-            price: 200000,
-            image: '',
-            quantity: 1,
-            stock: 5,
-        },
-        {
-            id: 3,
-            name: 'Third Product',
-            price: 150000,
-            image: 'third-product.jpg',
-            quantity: 1,
-            stock: 0, // Out of stock
-        },
-        {
-            id: 4,
-            name: 'Fourth Product',
-            price: 300000,
-            image: 'fourth-product.jpg',
-            quantity: 1,
-            stock: 2,
-        },
-    ]);
+    const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
     return (
         <div className="p-4 py-8">
