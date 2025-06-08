@@ -15,7 +15,7 @@ export function AppNavbar() {
     return (
         <nav className="flex items-center justify-between border-b border-black px-24 md:h-14">
             <div className="flex items-center gap-8">
-                <Link href="#">
+                <Link href="/">
                     <h1 className="text-xl font-bold">Ecommerce</h1>
                 </Link>
                 <Link href="#">
@@ -58,7 +58,9 @@ export function AppNavbar() {
                     </Link>
                 )}
                 <div className="flex items-center p-2">
-                    <ShoppingCart />
+                    <Link href="/cart" className="flex items-center gap-2">
+                        <ShoppingCart />
+                    </Link>
                 </div>
             </div>
         </nav>

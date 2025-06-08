@@ -11,6 +11,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
+
+    Route::get('cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
 });
 
 require __DIR__ . '/settings.php';
