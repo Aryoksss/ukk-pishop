@@ -16,7 +16,7 @@ export function Cart() {
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
     return (
-        <div className="p-4 py-8">
+        <div className="p-4 py-8 dark:text-black">
             <h1 className="text-2xl">Keranjang</h1>
             <div className="mt-2 grid gap-4 md:grid-cols-4">
                 <div className="col-span-3">
