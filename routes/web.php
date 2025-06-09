@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 use Inertia\Inertia;
 
 Route::middleware(['guest'])->group(function () {
@@ -11,8 +14,10 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
+    Route::get('cart', [CartController::class, 'index'])->name('cart');
+
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('profile/address', [ProfileController::class, 'address'])->name('profile.address');
 });
 
-require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';
