@@ -31,19 +31,19 @@ export default function Dashboard({ latestProducts, recommendedProducts, mostOrd
                 <Carousel className="w-full" opts={{ loop: true }}>
                     <CarouselContent className="">
                         <CarouselItem className="min-h-96 w-full bg-black">
-                            <img src="novapro.png" alt="" className="h-full w-full object-cover" />
+                            <img src="images/novapro.png" alt="" className="h-full w-full object-cover" />
                         </CarouselItem>
                         <CarouselItem className="min-h-96 w-full bg-white">
                             <img src="images/novapro-carousel.svg" alt="" className="h-full w-full object-cover" />
                         </CarouselItem>
                         <CarouselItem className="min-h-96 w-full bg-gray-200">
-                            <img src="novapro.png" alt="" className="h-full w-full object-cover" />
+                            <img src="images/sades.png" alt="" className="h-full w-full object-cover" />
                         </CarouselItem>
                     </CarouselContent>
                     <CarouselPrevious />
                     <CarouselNext />
                 </Carousel>
-                <div className="mt-12 grid grid-cols-5 gap-4">
+                <div className="mt-12 grid grid-cols-5 gap-4 dark:text-black">
                     <div className="flex items-center justify-center rounded-sm bg-white shadow-md">
                         <h2 className="p-4 text-2xl">Mouse</h2>
                     </div>
@@ -60,8 +60,8 @@ export default function Dashboard({ latestProducts, recommendedProducts, mostOrd
                         <h2 className="p-4 text-2xl">Switch</h2>
                     </div>
                 </div>
-                <h2 className="mt-12 self-start text-2xl">Produk</h2>
-                <h3 className="self-start text-lg">Temukan produk terbaru kami</h3>
+                <h2 className="mt-12 self-start text-2xl dark:text-black">Produk</h2>
+                <h3 className="self-start text-lg dark:text-black">Temukan produk terbaru kami</h3>
                 <div className="grid w-full grid-cols-5 gap-4">
                     {latestProducts.map((product) => (
                         <div
@@ -74,7 +74,7 @@ export default function Dashboard({ latestProducts, recommendedProducts, mostOrd
                         </div>
                     ))}
                 </div>
-                <h3 className="self-start text-lg">Rekomendasi Produk</h3>
+                <h3 className="self-start text-lg dark:text-black">Rekomendasi Produk</h3>
                 <div className="grid w-full grid-cols-5 gap-4">
                     {recommendedProducts.map((product) => (
                         <div
@@ -87,7 +87,7 @@ export default function Dashboard({ latestProducts, recommendedProducts, mostOrd
                         </div>
                     ))}
                 </div>
-                <h3 className="self-start text-lg">Produk Terlaris</h3>
+                <h3 className="self-start text-lg dark:text-black">Produk Terlaris</h3>
                 <div className="grid w-full grid-cols-5 gap-4">
                     {mostOrderedProducts.map((product) => (
                         <div
