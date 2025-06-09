@@ -18,14 +18,14 @@ export function AppNavbar() {
                 <Link href="/">
                     <img src="/images/setuply.png" alt="Logo" className="object-cover md:h-12 md:w-12 lg:h-18 lg:w-16" />
                 </Link>
-                <Link href="#">
+                <Link href="#" className="dark:text-black">
                     <h1 className="">Produk</h1>
                 </Link>
             </div>
             <div className="flex items-center justify-center flex-1">
                 <Input className="border-border-primary w-sm rounded-full placeholder:text-center" placeholder="Search" />
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-4 dark:text-black">
                 {user ? (
                     <DropdownMenu>
                         <DropdownMenuTrigger className="flex items-center gap-2 p-2">
@@ -50,10 +50,10 @@ export function AppNavbar() {
                     </DropdownMenu>
                 ) : (
                     <Link href="/login">
-                        <h2 className="p-2 px-4 text-base">Sign in</h2>
+                        <h2 className="p-2 px-4 text-base dark:text-black">Sign in</h2>
                     </Link>
                 )}
-                <div className="flex items-center p-2">
+                <div className="flex items-center p-2 dark:text-black">
                     <Link href="/cart" className="flex items-center gap-2">
                         <ShoppingCart />
                     </Link>

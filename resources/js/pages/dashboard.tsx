@@ -29,40 +29,65 @@ export default function Dashboard({ latestProducts, recommendedProducts, mostOrd
     return (
         <AppLayout>
             <div className="flex flex-col items-center gap-4 p-4 px-16">
-                <Carousel className="w-full" opts={{ loop: true }}>
+                <Carousel className="w-full h-90" opts={{ loop: true }}>
                     <CarouselContent className="">
-                        <CarouselItem className="min-h-96 w-full bg-black">
-                            <img src="novapro.png" alt="" className="h-full w-full object-cover" />
+                        <CarouselItem className="h-100 w-full bg-black">
+                            <img src="images/novapro.png" alt="" className="h-full w-full object-cover" />
                         </CarouselItem>
-                        <CarouselItem className="min-h-96 w-full bg-white">
+                        <CarouselItem className="h-100 w-full bg-white">
                             <img src="images/novapro-carousel.svg" alt="" className="h-full w-full object-cover" />
                         </CarouselItem>
-                        <CarouselItem className="min-h-96 w-full bg-gray-200">
-                            <img src="novapro.png" alt="" className="h-full w-full object-cover" />
+                        <CarouselItem className="h-100 w-full bg-gray-200">
+                            <img src="images/sades.png" alt="" className="h-full w-full object-cover" />
                         </CarouselItem>
                     </CarouselContent>
                     <CarouselPrevious />
                     <CarouselNext />
                 </Carousel>
-                <div className="mt-12 grid grid-cols-5 gap-4">
-                    <div className="flex items-center justify-center rounded-sm bg-white shadow-md">
-                        <h2 className="p-4 text-2xl">Mouse</h2>
+                <div className="mt-12 grid grid-cols-5 gap-4 dark:text-black">
+                    <div className="group relative flex h-24 items-center justify-center overflow-hidden rounded-sm bg-white px-16 py-4 shadow-md transition-all duration-300">
+                        <h2 className="p-4 text-2xl transition-transform duration-300 group-hover:-translate-y-8 group-hover:opacity-0">Mouse</h2>
+                        <img 
+                            src="images/mouse.png" 
+                            alt="Mouse" 
+                            className="absolute inset-0 h-full w-full translate-y-full object-cover transition-transform duration-300 group-hover:translate-y-0"
+                        />
                     </div>
-                    <div className="flex items-center justify-center rounded-sm bg-white px-16 py-4 shadow-md">
-                        <h2 className="p-4 text-2xl">Keyboard</h2>
+                    <div className="group relative flex h-24 items-center justify-center overflow-hidden rounded-sm bg-white px-16 py-4 shadow-md transition-all duration-300 hover:h-32">
+                        <h2 className="p-4 text-2xl transition-transform duration-300 group-hover:-translate-y-8 group-hover:opacity-0">Keyboard</h2>
+                        <img 
+                            src="images/keyboard.png" 
+                            alt="Keyboard" 
+                            className="absolute bottom-0 h-20 w-20 translate-y-full object-cover transition-transform duration-300 group-hover:translate-y-0"
+                        />
                     </div>
-                    <div className="flex items-center justify-center rounded-sm bg-white px-16 py-4 shadow-md">
-                        <h2 className="p-4 text-2xl">Deskmat</h2>
+                    <div className="group relative flex h-24 items-center justify-center overflow-hidden rounded-sm bg-white px-16 py-4 shadow-md transition-all duration-300 hover:h-32">
+                        <h2 className="p-4 text-2xl transition-transform duration-300 group-hover:-translate-y-8 group-hover:opacity-0">Deskmat</h2>
+                        <img 
+                            src="images/deskmat.png" 
+                            alt="Deskmat" 
+                            className="absolute bottom-0 h-20 w-20 translate-y-full object-cover transition-transform duration-300 group-hover:translate-y-0"
+                        />
                     </div>
-                    <div className="flex items-center justify-center rounded-sm bg-white px-16 py-4 shadow-md">
-                        <h2 className="p-4 text-2xl">Keycaps</h2>
+                    <div className="group relative flex h-24 items-center justify-center overflow-hidden rounded-sm bg-white px-16 py-4 shadow-md transition-all duration-300 hover:h-32">
+                        <h2 className="p-4 text-2xl transition-transform duration-300 group-hover:-translate-y-8 group-hover:opacity-0">Keycaps</h2>
+                        <img 
+                            src="images/keycaps.png" 
+                            alt="Keycaps" 
+                            className="absolute bottom-0 h-20 w-20 translate-y-full object-cover transition-transform duration-300 group-hover:translate-y-0"
+                        />
                     </div>
-                    <div className="flex items-center justify-center rounded-sm bg-white px-16 py-4 shadow-md">
-                        <h2 className="p-4 text-2xl">Switch</h2>
+                    <div className="group relative flex h-24 items-center justify-center overflow-hidden rounded-sm bg-white px-16 py-4 shadow-md transition-all duration-300 hover:h-32">
+                        <h2 className="p-4 text-2xl transition-transform duration-300 group-hover:-translate-y-8 group-hover:opacity-0">Switch</h2>
+                        <img 
+                            src="images/switch.png" 
+                            alt="Switch" 
+                            className="absolute bottom-0 h-20 w-20 translate-y-full object-cover transition-transform duration-300 group-hover:translate-y-0"
+                        />
                     </div>
                 </div>
-                <h2 className="mt-12 self-start text-2xl">Produk</h2>
-                <h3 className="self-start text-lg">Temukan produk terbaru kami</h3>
+                <h2 className="mt-12 self-start text-2xl dark:text-black">Produk</h2>
+                <h3 className="self-start text-lg dark:text-black">Temukan produk terbaru kami</h3>
                 <div className="grid w-full grid-cols-5 gap-4">
                     {latestProducts.map((product) => (
                         <div
@@ -75,7 +100,7 @@ export default function Dashboard({ latestProducts, recommendedProducts, mostOrd
                         </div>
                     ))}
                 </div>
-                <h3 className="self-start text-lg">Rekomendasi Produk</h3>
+                <h3 className="self-start text-lg dark:text-black">Rekomendasi Produk</h3>
                 <div className="grid w-full grid-cols-5 gap-4">
                     {recommendedProducts.map((product) => (
                         <div
@@ -88,7 +113,7 @@ export default function Dashboard({ latestProducts, recommendedProducts, mostOrd
                         </div>
                     ))}
                 </div>
-                <h3 className="self-start text-lg">Produk Terlaris</h3>
+                <h3 className="self-start text-lg dark:text-black">Produk Terlaris</h3>
                 <div className="grid w-full grid-cols-5 gap-4">
                     {mostOrderedProducts.map((product) => (
                         <div
