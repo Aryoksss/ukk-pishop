@@ -19,6 +19,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('profile/address', [ProfileController::class, 'address'])->name('profile.address');
     Route::post('profile/address', [ProfileController::class, 'storeAddress'])->name('profile.address.store');
+    Route::put('profile/address/{id}', [ProfileController::class, 'updateAddress'])->name('profile.address.update');
 });
 
 require __DIR__ . '/auth.php';
