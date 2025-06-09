@@ -12,6 +12,7 @@ import AuthLayout from '@/layouts/auth-layout';
 type RegisterForm = {
     name: string;
     email: string;
+    phone: string;
     password: string;
     password_confirmation: string;
 };
@@ -20,6 +21,7 @@ export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm<Required<RegisterForm>>({
         name: '',
         email: '',
+        phone: '',
         password: '',
         password_confirmation: '',
     });
@@ -73,6 +75,41 @@ export default function Register() {
                             className="border-gray-300 text-gray-900 focus:border-indigo-500"
                         />
                         <InputError message={errors.email} />
+                    </div>
+                    
+
+                    <div className="grid gap-1">
+                        <Label htmlFor="phone" className="text-base font-medium text-gray-900">
+                            Phone Number
+                        </Label>
+                        <Input
+                            id="phone"
+                            type="tel"
+                            required
+                            tabIndex={3}
+                            autoComplete="tel"
+                            value={data.phone}
+                            onChange={(e) => {
+                                let value = e.target.value;
+                                // Remove any non-digit characters except +
+                                value = value.replace(/[^\d+]/g, '');
+                                
+                                // If starts with 0, replace with +62
+                                if (value.startsWith('0')) {
+                                    value = '+62' + value.substring(1);
+                                }
+                                // If doesn't start with +, add +62
+                                else if (!value.startsWith('+')) {
+                                    value = '+62' + value;
+                                }
+                                
+                                setData('phone', value);
+                            }}
+                            disabled={processing}
+                            placeholder="+62812 3456 7890"
+                            className="border-gray-300 text-gray-900 focus:border-indigo-500"
+                        />
+                        <InputError message={errors.phone} />
                     </div>
 
                     <div className="grid gap-1">
