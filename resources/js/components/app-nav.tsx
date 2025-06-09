@@ -24,9 +24,6 @@ export function AppNavbar() {
                 <Link href="#">
                     <h1 className="">Kategori</h1>
                 </Link>
-                <Link href="#">
-                    <h1 className="">About</h1>
-                </Link>
                 <Input className="border-border-primary w-sm rounded-full placeholder:text-center 2xl:ms-64" placeholder="Search" />
             </div>
             <div className="flex gap-4">

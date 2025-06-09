@@ -1,20 +1,43 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import AppLayout from '@/layouts/app-layout';
 
-export default function Dashboard() {
+interface Category {
+    name: string;
+}
+interface Product {
+    id: number;
+    name: string;
+    category: Category;
+    price: number;
+    stock: number;
+    description: string;
+    image: string;
+}
+interface DashboardProps {
+    latestProducts: Product[];
+    recommendedProducts: Product[];
+    mostOrderedProducts: Product[];
+}
+
+export default function Dashboard({ latestProducts, recommendedProducts, mostOrderedProducts }: DashboardProps) {
+    const handleProductClick = (id: number) => {
+        // Handle product click event
+        return id;
+    };
+
     return (
         <AppLayout>
             <div className="flex flex-col items-center gap-4 p-4 px-16">
                 <Carousel className="w-full">
                     <CarouselContent className="">
                         <CarouselItem className="min-h-96 w-full bg-black">
-                            <img src="novapro.png" alt="" />
+                            <img src="novapro.png" alt="" className="h-full w-full object-cover" />
                         </CarouselItem>
                         <CarouselItem className="min-h-96 w-full bg-white">
-                            <img src="novapro.png" alt="" />
+                            <img src="storage/novapro-carousel.svg" alt="" className="h-full w-full object-cover" />
                         </CarouselItem>
                         <CarouselItem className="min-h-96 w-full bg-gray-200">
-                            <img src="novapro.png" alt="" />
+                            <img src="novapro.png" alt="" className="h-full w-full object-cover" />
                         </CarouselItem>
                     </CarouselContent>
                     <CarouselPrevious />
@@ -40,57 +63,42 @@ export default function Dashboard() {
                 <h2 className="mt-12 self-start text-2xl">Produk</h2>
                 <h3 className="self-start text-lg">Temukan produk terbaru kami</h3>
                 <div className="grid w-full grid-cols-5 gap-4 overflow-x-scroll">
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
+                    {latestProducts.map((product) => (
+                        <div
+                            key={product.id}
+                            className="group relative aspect-square cursor-pointer rounded-md shadow-md transition-all"
+                            onClick={() => handleProductClick(product.id)}
+                        >
+                            <img src={product.image} alt={product.name} className="h-full w-full" />
+                            <div className="bg-opacity-30 absolute inset-0 bg-zinc-900/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+                        </div>
+                    ))}
                 </div>
                 <h3 className="self-start text-lg">Rekomendasi Produk</h3>
                 <div className="grid w-full grid-cols-5 gap-4 overflow-x-scroll">
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
+                    {recommendedProducts.map((product) => (
+                        <div
+                            key={product.id}
+                            className="group relative aspect-square cursor-pointer rounded-md shadow-md transition-all"
+                            onClick={() => handleProductClick(product.id)}
+                        >
+                            <img src={product.image} alt={product.name} className="h-full w-full" />
+                            <div className="bg-opacity-30 absolute inset-0 bg-zinc-900/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+                        </div>
+                    ))}
                 </div>
                 <h3 className="self-start text-lg">Produk Terlaris</h3>
                 <div className="grid w-full grid-cols-5 gap-4 overflow-x-scroll">
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
-                    <div className="aspect-square rounded-md bg-white shadow-md">
-                        <img src="monoseries.jpg" alt="" />
-                    </div>
+                    {mostOrderedProducts.map((product) => (
+                        <div
+                            key={product.id}
+                            className="group relative aspect-square cursor-pointer rounded-md shadow-md transition-all"
+                            onClick={() => handleProductClick(product.id)}
+                        >
+                            <img src={product.image} alt={product.name} className="h-full w-full" />
+                            <div className="bg-opacity-30 absolute inset-0 bg-zinc-900/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+                        </div>
+                    ))}
                 </div>
             </div>
         </AppLayout>
