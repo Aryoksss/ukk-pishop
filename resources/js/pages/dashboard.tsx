@@ -1,5 +1,6 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import AppLayout from '@/layouts/app-layout';
+import { router } from '@inertiajs/react';
 
 interface Category {
     name: string;
@@ -21,8 +22,8 @@ interface DashboardProps {
 
 export default function Dashboard({ latestProducts, recommendedProducts, mostOrderedProducts }: DashboardProps) {
     const handleProductClick = (id: number) => {
-        // Handle product click event
-        return id;
+        console.log(`Navigating to product with ID: ${id}`);
+        router.visit(route('product.show', { id }));
     };
 
     return (
