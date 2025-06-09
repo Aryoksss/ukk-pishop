@@ -21,7 +21,7 @@ class ProductSeeder extends Seeder
                 'price' => 300000,
                 'category_id' => 1, // Mouse category
                 'stock' => 5,
-                'image' => 'storage/novapro-square.jpg'
+                'image' => 'images/novapro-square.jpg'
             ],
             [
                 'name' => 'Lamzu Maya X',
@@ -29,7 +29,7 @@ class ProductSeeder extends Seeder
                 'price' => 750000,
                 'category_id' => 1, // Mouse category
                 'stock' => 5,
-                'image' => 'storage/lamzumayax-square.jpg'
+                'image' => 'images/lamzumayax-square.jpg'
             ],
             [
                 'name' => 'Scyrox V6',
@@ -37,7 +37,7 @@ class ProductSeeder extends Seeder
                 'price' => 700000,
                 'category_id' => 1, // Mouse category
                 'stock' => 5,
-                'image' => 'storage/scyroxv6-square.jpg'
+                'image' => 'images/scyroxv6-square.jpg'
             ],
             [
                 'name' => 'Vortexseries Mono Keyboard',
@@ -45,7 +45,7 @@ class ProductSeeder extends Seeder
                 'price' => 300000,
                 'category_id' => 2, // Keyboard category
                 'stock' => 5,
-                'image' => 'storage/monokeyboard-square.jpg'
+                'image' => 'images/monokeyboard-square.jpg'
             ],
             [
                 'name' => 'Deskmat MP905',
@@ -53,7 +53,7 @@ class ProductSeeder extends Seeder
                 'price' => 150000,
                 'category_id' => 3, // Deskmat category
                 'stock' => 5,
-                'image' => 'storage/deskmatmp905-square.jpg'
+                'image' => 'images/deskmatmp905-square.jpg'
             ]
         ]);
     }

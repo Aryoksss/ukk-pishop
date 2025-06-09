@@ -38,13 +38,11 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
-        $recommendedProducts = Product::with('reviews')
-            ->whereHas('reviews', function ($query) {
-                $query->where('rating', '>=', 4);
-            })
-            ->latest()
+        $recommendedProducts = Product::withAvg('reviews', 'rating')
+            ->orderByDesc('reviews_avg_rating')
             ->take(5)
             ->get();
+
 
         $mostOrderedProducts = Product::withSum('orderItems', 'quantity')
             ->orderBy('order_items_sum_quantity', 'desc')
