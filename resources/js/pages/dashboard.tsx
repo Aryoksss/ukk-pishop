@@ -28,13 +28,13 @@ export default function Dashboard({ latestProducts, recommendedProducts, mostOrd
     return (
         <AppLayout>
             <div className="flex flex-col items-center gap-4 p-4 px-16">
-                <Carousel className="w-full">
+                <Carousel className="w-full" opts={{ loop: true }}>
                     <CarouselContent className="">
                         <CarouselItem className="min-h-96 w-full bg-black">
                             <img src="novapro.png" alt="" className="h-full w-full object-cover" />
                         </CarouselItem>
                         <CarouselItem className="min-h-96 w-full bg-white">
-                            <img src="storage/novapro-carousel.svg" alt="" className="h-full w-full object-cover" />
+                            <img src="images/novapro-carousel.svg" alt="" className="h-full w-full object-cover" />
                         </CarouselItem>
                         <CarouselItem className="min-h-96 w-full bg-gray-200">
                             <img src="novapro.png" alt="" className="h-full w-full object-cover" />
@@ -62,7 +62,7 @@ export default function Dashboard({ latestProducts, recommendedProducts, mostOrd
                 </div>
                 <h2 className="mt-12 self-start text-2xl">Produk</h2>
                 <h3 className="self-start text-lg">Temukan produk terbaru kami</h3>
-                <div className="grid w-full grid-cols-5 gap-4 overflow-x-scroll">
+                <div className="grid w-full grid-cols-5 gap-4">
                     {latestProducts.map((product) => (
                         <div
                             key={product.id}
@@ -75,7 +75,7 @@ export default function Dashboard({ latestProducts, recommendedProducts, mostOrd
                     ))}
                 </div>
                 <h3 className="self-start text-lg">Rekomendasi Produk</h3>
-                <div className="grid w-full grid-cols-5 gap-4 overflow-x-scroll">
+                <div className="grid w-full grid-cols-5 gap-4">
                     {recommendedProducts.map((product) => (
                         <div
                             key={product.id}
@@ -88,7 +88,7 @@ export default function Dashboard({ latestProducts, recommendedProducts, mostOrd
                     ))}
                 </div>
                 <h3 className="self-start text-lg">Produk Terlaris</h3>
-                <div className="grid w-full grid-cols-5 gap-4 overflow-x-scroll">
+                <div className="grid w-full grid-cols-5 gap-4">
                     {mostOrderedProducts.map((product) => (
                         <div
                             key={product.id}

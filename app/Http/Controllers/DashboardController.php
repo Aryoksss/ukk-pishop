@@ -43,6 +43,7 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
+
         $mostOrderedProducts = Product::withSum('orderItems', 'quantity')
             ->orderBy('order_items_sum_quantity', 'desc')
             ->take(5)

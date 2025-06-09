@@ -16,15 +16,14 @@ export function AppNavbar() {
         <nav className="flex items-center justify-between border-b border-black px-24 md:h-14">
             <div className="flex items-center gap-8">
                 <Link href="/">
-                    <h1 className="text-xl font-bold">Ecommerce</h1>
+                    <img src="/images/setuply.png" alt="Logo" className="object-cover md:h-12 md:w-12 lg:h-18 lg:w-16" />
                 </Link>
                 <Link href="#">
                     <h1 className="">Produk</h1>
                 </Link>
-                <Link href="#">
-                    <h1 className="">Kategori</h1>
-                </Link>
-                <Input className="border-border-primary w-sm rounded-full placeholder:text-center 2xl:ms-64" placeholder="Search" />
+            </div>
+            <div className="flex items-center justify-center flex-1">
+                <Input className="border-border-primary w-sm rounded-full placeholder:text-center" placeholder="Search" />
             </div>
             <div className="flex gap-4">
                 {user ? (
