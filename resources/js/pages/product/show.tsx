@@ -38,7 +38,7 @@ export default function ProductShow({
 }) {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const { data, setData, post } = useForm<CartForm>({
+    const { data, setData } = useForm<CartForm>({
         product_id: undefined,
         quantity: 1,
     });
@@ -50,14 +50,21 @@ export default function ProductShow({
 
     const handleAddToCart = (id: number) => {
         setData('product_id', id);
-        post(route('cart.store'), {
-            onSuccess: () => {
-                setSuccess(true);
+        router.post(
+            route('cart.store'),
+            {
+                product_id: id,
+                quantity: data.quantity,
             },
-            onError: (error) => {
-                setError(error.message);
+            {
+                onSuccess: () => {
+                    setSuccess(true);
+                },
+                onError: (error) => {
+                    setError(error.message);
+                },
             },
-        });
+        );
     };
 
     return (
