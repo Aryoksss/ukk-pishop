@@ -6,13 +6,14 @@ import { Link, router, usePage } from '@inertiajs/react';
 import { type PropsWithChildren } from 'react';
 import AppLayout from '../app-layout';
 
+
 export default function ProfileLayout({ children }: PropsWithChildren) {
     const { props } = usePage<SharedData>();
     const user = props.auth.user;
 
     return (
         <AppLayout>
-            <div className="flex min-h-[calc(100vh-130px)] w-full gap-4 p-4">
+            <div className="flex min-h-[calc(95vh-120px)] w-full gap-4 p-4 overflow-hidden dark:text-black">
                 <div className="flex flex-col rounded-md bg-gray-100 p-4 shadow-md">
                     <div className="flex w-64 items-center gap-4">
                         <Avatar className="size-12">

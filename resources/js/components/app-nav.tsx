@@ -22,9 +22,9 @@ export function AppNavbar() {
                     <h1 className="">Produk</h1>
                 </Link>
             </div>
-            <div className="flex items-center justify-center flex-1">
+            {/* <div className="flex items-center justify-center flex-1">
                 <Input className="border-border-primary w-sm rounded-full placeholder:text-center" placeholder="Search" />
-            </div>
+            </div> */}
             <div className="flex gap-4 dark:text-black">
                 {user ? (
                     <DropdownMenu>
