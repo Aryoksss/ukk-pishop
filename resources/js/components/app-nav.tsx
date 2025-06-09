@@ -33,9 +33,9 @@ export function AppNavbar() {
                             {user.name}
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
-                            <DropdownMenuItem>
-                                <Link href="/profile">Profile</Link>
-                            </DropdownMenuItem>
+                            <Link href="/profile">
+                                <DropdownMenuItem>Profile</DropdownMenuItem>
+                            </Link>
                             <DropdownMenuItem>
                                 <Button
                                     onClick={(e) => {
