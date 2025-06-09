@@ -20,7 +20,7 @@ class UserAddress extends Model
         'address_line1',
         'address_line2',
         'city',
-        'state',
+        'province',
         'postal_code',
         'country',
     ];
