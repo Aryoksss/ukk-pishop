@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
@@ -47,16 +48,17 @@ class OrderController extends Controller
         ]);
 
         // Attach the cart items to the order
-        OrderItem::whereIn('id', $request->cart_items)->each(function ($item) use ($order) {
+        CartItem::whereIn('id', $request->cart_items)->get()->each(function ($item) use ($order) {
             $order->orderItems()->create([
                 'product_id' => $item->product_id,
                 'order_id' => $order->id,
                 'quantity' => $item->quantity,
-                'price' => $item->price,
+                'price' => $item->product->price, // assuming you want current product price
             ]);
         });
-
-        $order->orderItems->each(function ($item) {
+        // Reduce product stock when order is created
+        $cartItems = auth('web')->user()->cartItems()->whereIn('id', $request->cart_items)->get();
+        $cartItems->each(function ($item) {
             $item->product->decrement('stock', $item->quantity);
         });
 
@@ -71,6 +73,10 @@ class OrderController extends Controller
             'customer_details' => [
                 'first_name' => auth('web')->user()->name,
                 'email' => auth('web')->user()->email,
+            ],
+            'callback' => [
+                'finish' => route('payment.success'),
+                // 'error' => route('payment.error'),
             ],
         ];
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,17 @@ class ProfileController extends Controller
     {
         return inertia('profile/index', [
             'user' => $request->user(),
+        ]);
+    }
+
+    public function orderHistory(Request $request)
+    {
+        //get product from orderitems
+        $userOrders = $request->user()->orders()->with('orderItems.product')->get();
+
+        return inertia('profile/order-history', [
+            'user' => $request->user(),
+            'orders' => $userOrders,
         ]);
     }
     public function address(Request $request)

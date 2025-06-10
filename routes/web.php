@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Product;
@@ -24,9 +25,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('profile/address', [ProfileController::class, 'storeAddress'])->name('profile.address.store');
     Route::put('profile/address/{id}', [ProfileController::class, 'updateAddress'])->name('profile.address.update');
 
+    Route::get('profile/order-history', [ProfileController::class, 'orderHistory'])->name('profile.order-history');
+
     Route::get('product/{id}', [ProductController::class, 'show'])->name('product.show');
     Route::post('cart/store', [CartController::class, 'store'])->name('cart.store');
     Route::post('order/store', [OrderController::class, 'store'])->name('order.store');
+
+    Route::get('payment/success', [PaymentController::class, 'success'])->name('payment.success');
 });
 
 require __DIR__ . '/auth.php';
