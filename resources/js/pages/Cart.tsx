@@ -71,7 +71,7 @@ export default function Cart({ cartItems: initialCartItems, addresses }: { cartI
     return (
         <AppLayout>
             <div className="p-4 py-8">
-                <h1 className="text-2xl">Keranjang</h1>
+                <h1 className="text-2xl dark:text-gray-700">Keranjang</h1>
                 <form action="" onSubmit={handleSubmit}>
                     <div className="mt-2 grid gap-4 md:grid-cols-4">
                         <div className="col-span-3">
@@ -88,7 +88,7 @@ export default function Cart({ cartItems: initialCartItems, addresses }: { cartI
                                             }
                                         }}
                                     />
-                                    <h2 className="text-lg font-semibold">Pilih Semua</h2>
+                                    <h2 className="text-lg font-semibold dark:text-gray-700">Pilih Semua</h2>
                                 </div>
                                 {cartItems.length > 0 ? (
                                     cartItems.map((item) => (
@@ -108,20 +108,32 @@ export default function Cart({ cartItems: initialCartItems, addresses }: { cartI
                                             <img
                                                 src={item.product.image || 'placeholder.jpg'}
                                                 alt={item.product.name}
-                                                className="h-16 w-16 rounded-md"
+                                                className="h-16 w-16 rounded-md "
                                             />
                                             <div className="flex w-full justify-between">
                                                 <div className="flex flex-col">
-                                                    <h2 className="text-lg font-semibold">{item.product.name}</h2>
+                                                    <h2 className="text-lg font-semibold dark:text-gray-700">{item.product.name}</h2>
                                                     <p className="text-sm text-gray-500">
-                                                        {item.product.price.toLocaleString('id-ID', {
-                                                            style: 'currency',
-                                                            currency: 'IDR',
-                                                        })}
+                                                        Rp {item.product.price.toLocaleString('id-ID')}
                                                     </p>
-                                                    {item.product.stock === 0 ? <span className="text-red-500">Stok Habis</span> : null}
+                                                    {item.product.stock === 0 ? <span className="text-red-500 dark:text-red-400">Stok Habis</span> : null}
                                                 </div>
-                                                <div className="flex flex-col">
+                                                <div className="flex items-center gap-2">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            const newQuantity = Math.max(1, item.quantity - 1);
+                                                            setCartItems((prev) =>
+                                                                prev.map((i) =>
+                                                                    i.product.id === item.product.id ? { ...i, quantity: newQuantity } : i,
+                                                                ),
+                                                            );
+                                                        }}
+                                                        className="flex h-8 w-8 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                                                        disabled={item.quantity <= 1 || item.product.stock === 0}
+                                                    >
+                                                        -
+                                                    </button>
                                                     <Input
                                                         type="number"
                                                         min="1"
@@ -135,7 +147,24 @@ export default function Cart({ cartItems: initialCartItems, addresses }: { cartI
                                                                 ),
                                                             );
                                                         }}
+                                                        className="w-20 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
+                                                        disabled={item.product.stock === 0}
                                                     />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            const newQuantity = Math.min(item.product.stock, item.quantity + 1);
+                                                            setCartItems((prev) =>
+                                                                prev.map((i) =>
+                                                                    i.product.id === item.product.id ? { ...i, quantity: newQuantity } : i,
+                                                                ),
+                                                            );
+                                                        }}
+                                                        className="flex h-8 w-8 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                                                        disabled={item.quantity >= item.product.stock || item.product.stock === 0}
+                                                    >
+                                                        +
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -178,7 +207,7 @@ export default function Cart({ cartItems: initialCartItems, addresses }: { cartI
                                 </SelectContent>
                             </Select>
                             <div className="mt-4">
-                                <button className="w-full rounded-md bg-[#DDD0C8] px-4 py-2 hover:bg-[#C8BEBE]">Checkout</button>
+                                <button type="submit" className="w-full rounded-md bg-[#DDD0C8] px-4 py-2 hover:bg-[#C8BEBE]">Checkout</button>
                             </div>
                         </div>
                     </div>

@@ -16,7 +16,6 @@ class CartController extends Controller
         $cartItems = $request->user()->cartItems()->with('product')->get();
         $userAddresses = $request->user()->addresses()->get();
 
-
         return Inertia::render('Cart', [
             'cartItems' => $cartItems,
             'addresses' => $userAddresses,
@@ -31,13 +30,35 @@ class CartController extends Controller
         ]);
         $user = auth('web')->user();
 
-        // Logic to add the product to the cart
-        CartItem::create([
-            'user_id' => $user->id,
-            'product_id' => $request->product_id,
-            'quantity' => $request->quantity
-        ]);
+        // Check if item already exists in cart
+        $existingItem = CartItem::where('user_id', $user->id)
+            ->where('product_id', $request->product_id)
+            ->first();
+
+        if ($existingItem) {
+            $existingItem->update([
+                'quantity' => $existingItem->quantity + $request->quantity
+            ]);
+        } else {
+            CartItem::create([
+                'user_id' => $user->id,
+                'product_id' => $request->product_id,
+                'quantity' => $request->quantity
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Product added to cart');
+    }
+
+    public function getCartCount(Request $request)
+    {
+        $user = $request->user();
+        if (!$user) {
+            return response()->json(['items_count' => 0]);
+        }
+
+        $itemsCount = $user->cartItems()->sum('quantity');
+        
+        return response()->json(['items_count' => $itemsCount]);
     }
 }

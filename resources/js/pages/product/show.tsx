@@ -75,9 +75,9 @@ export default function ProductShow({
                 </div>
             )}
 
-            {success && <div className="mt-2 rounded-md bg-green-200 p-4 text-green-600">Produk berhasil ditambahkan ke keranjang.</div>}
+            {success && <div className="mt-2 rounded-md bg-green-200 p-4 text-green-600 dark:text-green-400">Produk berhasil ditambahkan ke keranjang.</div>}
             <div className="flex min-h-[calc(100vh-130px)] flex-col justify-evenly p-4">
-                <div className="flex justify-center gap-4 p-4">
+                <div className="flex justify-center gap-4 p-4 text-gray-700">
                     <img src={`/${product.image}`} alt={product.name} className="h-fit w-fit rounded-md shadow-md" />
                     <div className="shadow-3xl flex w-2xl flex-col gap-1 rounded-md bg-gray-100 p-4">
                         <h1 className="text-2xl font-bold">{product.name}</h1>
@@ -89,22 +89,45 @@ export default function ProductShow({
                         <h3 className="mt-4 text-lg font-semibold">Detail Produk</h3>
                         <Separator />
                         <p className="text-gray-700">{product.description}</p>
-                        <div className="flex flex-col">
-                            <Input
-                                type="number"
-                                min="1"
-                                max={product.stock}
-                                value={data.quantity}
-                                onChange={(e) => {
-                                    const newQuantity = Math.max(1, Math.min(product.stock, Number(e.target.value)));
-                                    setData('quantity', newQuantity);
-                                }}
-                                className="w-fit"
-                            />
+                        <div className="mt-4 flex flex-col gap-2">
+                            <label htmlFor="quantity" className="text-sm font-medium text-gray-700">
+                                Jumlah
+                            </label>
+                            <div className="flex items-center gap-2">
+                                <button
+                                    type="button"
+                                    onClick={() => setData('quantity', Math.max(1, data.quantity - 1))}
+                                    className="flex h-8 w-8 items-center justify-center rounded-md border bg-gray-100 hover:bg-gray-200"
+                                    disabled={data.quantity <= 1}
+                                >
+                                    -
+                                </button>
+                                <Input
+                                    id="quantity"
+                                    type="number"
+                                    min="1"
+                                    max={product.stock}
+                                    value={data.quantity}
+                                    onChange={(e) => {
+                                        const newQuantity = Math.max(1, Math.min(product.stock, Number(e.target.value)));
+                                        setData('quantity', newQuantity);
+                                    }}
+                                    className="w-20 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setData('quantity', Math.min(product.stock, data.quantity + 1))}
+                                    className="flex h-8 w-8 items-center justify-center rounded-md border bg-gray-100 hover:bg-gray-200"
+                                    disabled={data.quantity >= product.stock}
+                                >
+                                    +
+                                </button>
+                            </div>
+                            <span className="text-xs text-gray-500">Maksimal {product.stock} item</span>
                         </div>
                         <div className="mt-6 flex">
                             <button
-                                className="flex cursor-pointer items-center gap-2 rounded-md bg-stone-400 px-4 py-2 text-white hover:bg-stone-600"
+                                className="flex cursor-pointer items-center gap-2 rounded-md bg-stone-400 px-4 py-2 text-white hover:bg-stone-600 "
                                 onClick={() => handleAddToCart(product.id)}
                             >
                                 <ShoppingCart /> Tambah ke Keranjang
@@ -113,7 +136,7 @@ export default function ProductShow({
                     </div>
                 </div>
                 <div>
-                    <h3 className="self-start text-lg">Rekomendasi Produk</h3>
+                    <h3 className="self-start text-lg text-gray-700">Rekomendasi Produk</h3>
                     <div className="grid w-full grid-cols-5 gap-4">
                         {recommendedProducts.map((product) => (
                             <div

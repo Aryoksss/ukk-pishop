@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\CartItem;
 use App\Models\Order;
-use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Midtrans\Config;
@@ -30,7 +29,6 @@ class OrderController extends Controller
 
         $address = auth('web')->user()->addresses()
             ->find($request->address_id)->first();
-
         // // Create the order
         // $order = $address->orders()->create([
         //     'total' => $request->total,
@@ -38,15 +36,16 @@ class OrderController extends Controller
         $order = Order::create([
             'user_id' => auth('web')->id(),
             'total_amount' => $request->total,
+            'shipping_name' => auth('web')->user()->name,
             'shipping_address_line1' => $address->address_line1,
             'shipping_address_line2' => $address->address_line2,
+            'shipping_phone' => auth('web')->user()->phone,
             'shipping_city' => $address->city,
             'shipping_province' => $address->province,
             'shipping_postal_code' => $address->postal_code,
             'shipping_country' => $address->country,
             'status' => 'pending', // or any default status you want
         ]);
-
         // Attach the cart items to the order
         CartItem::whereIn('id', $request->cart_items)->get()->each(function ($item) use ($order) {
             $order->orderItems()->create([
@@ -57,13 +56,13 @@ class OrderController extends Controller
             ]);
         });
         // Reduce product stock when order is created
-        $cartItems = auth('web')->user()->cartItems()->whereIn('id', $request->cart_items)->get();
+        $cartItems = CartItem::where('user_id', auth('web')->id())->whereIn('id', $request->cart_items)->get();
         $cartItems->each(function ($item) {
             $item->product->decrement('stock', $item->quantity);
         });
 
         // Clear the cart items after placing the order
-        auth('web')->user()->cartItems()->whereIn('id', $request->cart_items)->delete();
+        CartItem::where('user_id', auth('web')->id())->whereIn('id', $request->cart_items)->delete();
 
         $params = [
             'transaction_details' => [

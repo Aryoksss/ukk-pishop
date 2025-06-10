@@ -53,8 +53,13 @@ export function AppNavbar() {
                     </Link>
                 )}
                 <div className="flex items-center p-2 dark:text-black">
-                    <Link href="/cart" className="flex items-center gap-2">
+                    <Link href="/cart" className="flex items-center gap-2 relative">
                         <ShoppingCart />
+                        {props.cart?.items_count && props.cart.items_count > 0 && (
+                            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                                {props.cart.items_count}
+                            </span>
+                        )}
                     </Link>
                 </div>
             </div>

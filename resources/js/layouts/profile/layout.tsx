@@ -19,7 +19,7 @@ export default function ProfileLayout({ children }: PropsWithChildren) {
                             <AvatarImage src="https://github.com/shadcn.png" />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
-                        <h1 className="text-xl font-bold">{user.name}</h1>
+                        <h1 className="text-xl font-bold">{user?.name}</h1>
                     </div>
                     <Separator className="my-2" />
                     <div className="flex h-full flex-col justify-between">
