@@ -3,7 +3,6 @@ import { Button } from '@headlessui/react';
 import { Link, router, usePage } from '@inertiajs/react';
 import { CircleUser, ShoppingCart } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
-import { Input } from './ui/input';
 
 export function AppNavbar() {
     const { props } = usePage<SharedData>();
