@@ -67,7 +67,8 @@ class OrderController extends Controller
 
         $params = [
             'transaction_details' => [
-                'order_id' => $order->id,
+                // rand order id
+                'order_id' => $order->id . '-' . time(),
                 'gross_amount' => $request->total,
             ],
             'customer_details' => [

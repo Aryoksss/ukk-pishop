@@ -19,7 +19,8 @@ class PaymentController extends Controller
             'gross_amount' => 'required|numeric',
         ]);
 
-        $order = Order::findOrFail($request->order_id);
+        // trim time on id
+        $order = Order::findOrFail(explode('-', $request->order_id)[0]);
         // Update the order status based on the transaction status
         $order->status = $request->transaction_status;
         $order->save();
