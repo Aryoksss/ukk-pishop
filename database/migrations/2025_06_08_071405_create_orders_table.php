@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->decimal('total_amount', 16, 2);
-            $table->string('shipping_name');
-            $table->string('shipping_phone');
             $table->string('shipping_address_line1');
             $table->string('shipping_address_line2')->nullable();
             $table->string('shipping_city');

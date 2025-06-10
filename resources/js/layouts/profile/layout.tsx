@@ -6,14 +6,13 @@ import { Link, router, usePage } from '@inertiajs/react';
 import { type PropsWithChildren } from 'react';
 import AppLayout from '../app-layout';
 
-
 export default function ProfileLayout({ children }: PropsWithChildren) {
     const { props } = usePage<SharedData>();
     const user = props.auth.user;
 
     return (
         <AppLayout>
-            <div className="flex min-h-[calc(95vh-120px)] w-full gap-4 p-4 overflow-hidden dark:text-black">
+            <div className="flex min-h-[calc(95vh-120px)] w-full gap-4 overflow-hidden p-4 dark:text-black">
                 <div className="flex flex-col rounded-md bg-gray-100 p-4 shadow-md">
                     <div className="flex w-64 items-center gap-4">
                         <Avatar className="size-12">
@@ -36,7 +35,7 @@ export default function ProfileLayout({ children }: PropsWithChildren) {
                             </div>
                             <label className="text-lg font-bold">Pesanan</label>
                             <div className="flex flex-col gap-1 px-4">
-                                <Link href="/profile/order" className="text-gray-700 hover:text-blue-500">
+                                <Link href="/profile/order-history" className="text-gray-700 hover:text-blue-500">
                                     Pesanan Saya
                                 </Link>
                                 <Link href="/profile/review" className="text-gray-700 hover:text-blue-500">
