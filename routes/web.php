@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Product;
@@ -25,6 +26,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('product/{id}', [ProductController::class, 'show'])->name('product.show');
     Route::post('cart/store', [CartController::class, 'store'])->name('cart.store');
+    Route::post('order/store', [OrderController::class, 'store'])->name('order.store');
 });
 
 require __DIR__ . '/auth.php';
