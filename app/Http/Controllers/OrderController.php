@@ -55,6 +55,11 @@ class OrderController extends Controller
                 'price' => $item->price,
             ]);
         });
+
+        $order->orderItems->each(function ($item) {
+            $item->product->decrement('stock', $item->quantity);
+        });
+
         // Clear the cart items after placing the order
         auth('web')->user()->cartItems()->whereIn('id', $request->cart_items)->delete();
 
@@ -67,14 +72,6 @@ class OrderController extends Controller
                 'first_name' => auth('web')->user()->name,
                 'email' => auth('web')->user()->email,
             ],
-            'item_details' => $order->orderItems->map(function ($item) {
-                return [
-                    'id' => $item->product_id,
-                    'price' => $item->price,
-                    'quantity' => $item->quantity,
-                    'name' => $item->product->name,
-                ];
-            })->toArray(),
         ];
 
         $snapUrl = $this->createSnapUrl($params);
